@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\BienResource\Pages;
-use App\Filament\Resources\BienResource\RelationManagers;
-use App\Models\Bien;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Bien;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\BienResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\BienResource\RelationManagers;
 
 class BienResource extends Resource
 {
@@ -23,7 +25,10 @@ class BienResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name'),
+                TextInput::make('name'),
+                TextInput::make('price'),
+                TextInput::make('description'),
+                TextInput::make('image'),
             ]);
     }
 
@@ -31,12 +36,10 @@ class BienResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
-                Tables\Columns\TextColumn::make('category_id'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\TextColumn::make('image'),
+                TextColumn::make('name'),
+                TextColumn::make('description'),
+                TextColumn::make('price'),
+                TextColumn::make('image'),
             ])
             ->filters([
                 //

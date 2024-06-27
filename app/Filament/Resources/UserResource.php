@@ -8,6 +8,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
@@ -25,6 +26,8 @@ class UserResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name'),
+                TextInput::make('email'),
+                TextInput::make('phone'),
             ]);
     }
 
@@ -32,11 +35,11 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\TextColumn::make('address'),
-                Tables\Columns\TextColumn::make('role'),
+                TextColumn::make('name'),
+                TextColumn::make('email'),
+                TextColumn::make('phone'),
+                TextColumn::make('address'),
+                TextColumn::make('role'),
             ])
             ->filters([
                 //
