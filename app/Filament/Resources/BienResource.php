@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\BienResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\BienResource\RelationManagers;
+use Filament\Forms\Components\Textarea;
 
 class BienResource extends Resource
 {
@@ -25,10 +26,13 @@ class BienResource extends Resource
     {
         return $form
             ->schema([
+                TextInput::make('user_id'),
+                TextInput::make('category_id'),
                 TextInput::make('name'),
                 TextInput::make('price'),
-                TextInput::make('description'),
+                Textarea::make('description'),
                 TextInput::make('image'),
+                TextInput::make('city'),
             ]);
     }
 
@@ -36,9 +40,12 @@ class BienResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('user_id'),
+                TextColumn::make('category_id'),
                 TextColumn::make('name'),
                 TextColumn::make('description'),
                 TextColumn::make('price'),
+                TextColumn::make('city'),
                 TextColumn::make('image'),
             ])
             ->filters([
