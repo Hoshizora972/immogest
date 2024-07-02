@@ -29,7 +29,7 @@ class BienResource extends Resource
                 TextInput::make('user_id'),
                 TextInput::make('category_id'),
                 TextInput::make('name'),
-                TextInput::make('price'),
+                TextInput::make('price')->money('EUR'),
                 Textarea::make('description'),
                 TextInput::make('image'),
                 TextInput::make('city'),
@@ -44,7 +44,7 @@ class BienResource extends Resource
                 TextColumn::make('category_id'),
                 TextColumn::make('name'),
                 TextColumn::make('description'),
-                TextColumn::make('price'),
+                TextColumn::make('price')->money('EUR'),
                 TextColumn::make('city'),
                 TextColumn::make('image'),
             ])

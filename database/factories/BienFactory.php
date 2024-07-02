@@ -23,7 +23,7 @@ class BienFactory extends Factory
             'description'=>fake()->sentence(),
             'price'=>fake()->randomFloat(),
             'city'=>fake()->streetAddress(),
-            'image'=>fake()->imageUrl(640,480 ,'house',true),
+            'image'=>'/image/maison-contemporaine_onyx-version-nuit.webp'
         ];
     }
 }

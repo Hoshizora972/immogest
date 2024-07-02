@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bien;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,8 +14,9 @@ class ImmoController extends Controller
      */
     public function index()
     {
-        $bien = DB::table('biens')->simplePaginate(10);
-        return view ('index',compact('bien'));
+        $categories = Category::all();
+        $bien = DB::table('biens')->paginate(12);
+        return view ('index',compact('bien','categories'));
 
     }
 
@@ -39,9 +41,17 @@ class ImmoController extends Controller
      */
     public function show ($id)
     {
-        $rowBien = Bien::findOrFail($id);
-        return view ('bien',compact('rowBien'));
+        // $rowBien = Bien::findOrFail($id);
+        $categories= Category::all();
+        $bien = DB::table('biens');
+        $rowBien = Bien::where('id',$id)->first();
+
+        $similary=Bien::where('category_id',$rowBien->category_id)->inRandomOrder()->limit(4)->get();
+        return view('bien',compact('rowBien','categories','similary','bien'));
+
+
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -66,4 +76,19 @@ class ImmoController extends Controller
     {
         //
     }
+
+    public function category(Category $category)
+    {
+    $categories = Category::all();
+    $biens=Bien::where('category_id', $category->id)->paginate(4);
+
+    return view('bien',compact('biens','categories'));
+    }
 }
+   
+    
+
+
+
+
+
